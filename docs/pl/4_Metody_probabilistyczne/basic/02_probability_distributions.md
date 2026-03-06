@@ -1,5 +1,7 @@
 # Lista zadań 2 — Rozkłady prawdopodobieństwa (wybrane modele)
 
+> **Uwaga:** Ta lista zadań jest w trakcie rozwoju. Na razie prosimy jej jeszcze nie robić. :)
+
 ## Wprowadzenie
 
 W wielu losowych sytuacjach interesuje nas liczba wystąpień pewnych zdarzeń: liczba wadliwych produktów w partii, liczba błędów w tekście, czas oczekiwania na pierwsze zdarzenie albo liczba zgłoszeń w systemie. Do opisu takich zjawisk teoria prawdopodobieństwa używa modeli probabilistycznych, nazywanych również rozkładami prawdopodobieństwa.

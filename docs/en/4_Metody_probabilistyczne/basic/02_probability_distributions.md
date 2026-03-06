@@ -1,5 +1,7 @@
 # Task List 2 — Probability Distributions (Selected Models)
 
+> **Note:** This task list is still being developed. For now, please don’t work on it yet. :)
+
 ## Introduction
 
 In many real-world random situations we are interested in the number of occurrences of certain events: defective products in a batch, the number of errors in a text, the waiting time until the first event occurs, or the number of requests in a system. To describe such phenomena mathematically, probability theory uses probabilistic models, also called probability distributions.
