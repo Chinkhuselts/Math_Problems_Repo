@@ -1,423 +1,190 @@
-# Task List 1 — Events and Probability (Sample Spaces)
-
-## Visualizing Sample Spaces with Tree Diagrams
-
-Before solving the tasks below, it is often helpful to **visualize the experiment using a tree diagram**.
-
-A **tree diagram** represents a random experiment step by step.
-
-- Each **branch** represents a possible result of a single step of the experiment.
-- Each **level of the tree** corresponds to the next stage of the experiment.
-- Each **path from the root to a leaf** represents one **elementary outcome**.
-
-This method is especially useful when:
-
-- the experiment consists of **several consecutive steps**,
-- **the order of outcomes matters**,
-- we want to **construct the sample space systematically**.
-
-In such a diagram:
-
-- the **root** represents the start of the experiment,
-- each **branching** corresponds to the possible outcomes of the next step,
-- each **leaf of the tree** corresponds to one element of the **sample space**.
-
----
-
-### Example — Rock–Paper–Scissors Played Twice
-
-Consider an experiment in which a player chooses one of three options:
-
-- Rock ($R$)
-- Paper ($P$)
-- Scissors ($S$)
-
-Suppose the choice is made **twice in a row**, and the **order matters**.
-
-The experiment can be represented by the following **tree diagram**.
-
-```
-START
- │
- ├── R
- │     ├── R
- │     ├── P
- │     └── S
- │
- ├── P
- │     ├── R
- │     ├── P
- │     └── S
- │
- └── S
-       ├── R
-       ├── P
-       └── S
-```
-
-Each **path from the root to a leaf** represents one elementary outcome:
-
-$$
-(R,R), (R,P), (R,S),
-(P,R), (P,P), (P,S),
-(S,R), (S,P), (S,S)
-$$
-
-Therefore the sample space contains
-
-$$
-3 \times 3 = 9
-$$
-
-elementary outcomes.
-
----
-
-### Why Tree Diagrams Are Useful
-
-Tree diagrams help to:
-
-- **construct the sample space step by step**,
-- clearly see how the **number of outcomes grows**,
-- distinguish experiments **with replacement** and **without replacement**,
-- understand what an **elementary outcome** represents.
-
-You are encouraged to **draw tree diagrams for the experiments in the following tasks whenever possible**.
-
----
-
-### Optional exploration with simulations
-
-Another useful way to understand random experiments is to **simulate them on a computer**.
-
-You are encouraged to experiment with simple simulations, for example by asking an AI assistant or a chat tool to help you create a small **HTML/JavaScript program** that performs repeated random trials.
-
-For instance, you could simulate:
-
-- repeated **coin tosses**,
-- repeated **die rolls**,
-- repeated **card draws**.
-
-Such programs can generate many outcomes and display the results of the experiment.
-
-This type of computational experiment is commonly known as a **Monte Carlo simulation**.
-
-In a Monte Carlo simulation, the computer performs the same random experiment **many thousands or even millions of times**.  
-The results can then be used to estimate probabilities by observing the **relative frequencies of events**.
-
-When running such simulations, you may notice that:
-
-- every run of the program produces a **different sequence of outcomes**,  
-- the **observed frequencies fluctuate** when the number of trials is small,  
-- but as the number of trials increases, the frequencies tend to **approach the theoretical probabilities** that you compute analytically.
-
-For example, when tossing a fair coin the theoretical probability of heads is
-
-$$
-P(H) = \frac{1}{2}
-$$
-
-In a simulation of only a few tosses you might observe:
-
-- 7 heads out of 10 tosses,
-- or 3 heads out of 10 tosses.
-
-However, if the simulation performs thousands or millions of tosses, the **relative frequency of heads** will typically become closer and closer to \(0.5\).
-
-It will **never match the theoretical value perfectly**, but it will usually **approach it more closely as the number of trials increases**.
-
-When creating your simulations, you may therefore consider adding a feature that allows the program to run **very long Monte Carlo experiments**, so that you can observe how the empirical frequencies gradually approach the theoretical probabilities calculated in the exercises below.
-
----
-
+# Solutions: Task List 1 — Events and Probability
 
 ## Task 1 — Coin Tossing
 
-Consider an experiment consisting of tossing a **fair coin**.
-
-The order of outcomes matters.
-
-1. Define the **sample space** $\Omega_1$ for **one coin toss**.
-2. Construct the **sample space** $\Omega_2$ for **two coin tosses**.
-3. Construct the **sample space** $\Omega_3$ for **three coin tosses**.
-4. Determine the **number of elementary outcomes** in each sample space.
-5. Briefly describe what an **elementary outcome** represents in each case.
+1. **Sample space Omega_1 (one toss):** Omega_1 = {H, T}
+2. **Sample space Omega_2 (two tosses):**
+   Omega_2 = {(H,H), (H,T), (T,H), (T,T)}
+3. **Sample space Omega_3 (three tosses):**
+   Omega_3 = {(H,H,H), (H,H,T), (H,T,H), (H,T,T), (T,H,H), (T,H,T), (T,T,H), (T,T,T)}
+4. **Number of elementary outcomes:**
+   * Omega_1: 2^1 = 2
+   * Omega_2: 2^2 = 4
+   * Omega_3: 2^3 = 8
+5. **Elementary outcome representation:**
+   An elementary outcome represents a specific, ordered sequence of results from the coin tosses (e.g., Head on the first toss, Tail on the second, Head on the third).
 
 ---
 
 ## Task 2 — Rolling a Die
 
-Consider an experiment consisting of rolling a **fair six-sided die**.
-
-The order of outcomes matters.
-
-1. Define the **sample space** $\Omega_1$ for **one roll of the die**.
-2. Construct the **sample space** $\Omega_2$ for **two consecutive rolls**.
-3. Construct the **sample space** $\Omega_3$ for **three consecutive rolls**.
-4. Determine the **number of elementary outcomes** in each sample space.
-5. Briefly describe what an **elementary outcome** represents in this experiment.
+1. **Sample space Omega_1 (one roll):**
+   Omega_1 = {1, 2, 3, 4, 5, 6}
+2. **Sample space Omega_2 (two rolls):**
+   Omega_2 = {(i, j) | i, j in {1, 2, 3, 4, 5, 6}}
+3. **Sample space Omega_3 (three rolls):**
+   Omega_3 = {(i, j, k) | i, j, k in {1, 2, 3, 4, 5, 6}}
+4. **Number of elementary outcomes:**
+   * Omega_1: 6^1 = 6
+   * Omega_2: 6^2 = 36
+   * Omega_3: 6^3 = 216
+5. **Elementary outcome representation:**
+   It represents an exact sequence of numbers rolled on the die in chronological order.
 
 ---
 
 ## Task 3 — Drawing Cards
 
-Consider an experiment consisting of drawing cards from a **standard 52-card deck**.
-
-The order of outcomes matters.
-Treat each outcome as an **ordered sequence** of drawn cards.
-
-1. Define the **sample space** $\Omega_1$ for **drawing one card**.
-2. Construct the **sample space** $\Omega_2$ for **two consecutive draws with replacement**.
-3. Construct the **sample space** $\Omega_2'$ for **two consecutive draws without replacement**.
-4. Determine the **number of elementary outcomes** in both cases.
-5. Briefly describe what an **elementary outcome** represents in these experiments.
+Let the deck be denoted as a set D containing 52 unique cards.
+1. **Sample space Omega_1 (one card):**
+   Omega_1 = {c | c in D}
+2. **Sample space Omega_2 (two draws, with replacement):**
+   Omega_2 = {(c_1, c_2) | c_1 in D, c_2 in D}
+3. **Sample space Omega_2' (two draws, without replacement):**
+   Omega_2' = {(c_1, c_2) | c_1 in D, c_2 in D, c_1 != c_2}
+4. **Number of elementary outcomes:**
+   * Omega_1: 52
+   * Omega_2: 52 * 52 = 2704
+   * Omega_2': 52 * 51 = 2652
+5. **Elementary outcome representation:**
+   An ordered pair (or single value) representing the exact cards drawn, in the order they were drawn.
 
 ---
 
 ## Task 4 — Weekly Weather Observation
 
-The weather on a given day can be classified into **exactly one** of the following states:
+1. **Sample space Omega_1 (one day):**
+   Omega_1 = {S, C, R}
+2. **Sample space Omega_2 (two days):**
+   Omega_2 = {(w_1, w_2) | w_1, w_2 in {S, C, R}}
+3. **Sample space Omega_7 (seven days):**
+   Omega_7 = {(w_1, w_2, ..., w_7) | w_i in {S, C, R} for i=1...7}
+4. **Number of elementary outcomes:**
+   * Omega_1: 3^1 = 3
+   * Omega_2: 3^2 = 9
+   * Omega_7: 3^7 = 2187
+5. **Elementary outcome representation:**
+   The exact sequence of weather states over the 7 days of the week (e.g., S-C-R-R-S-C-S).
 
-- Sunny ($S$)
-- Cloudy ($C$)
-- Rainy ($R$)
-
-The weather is observed **once per day for seven consecutive days**.
-
-1. Define the **sample space** $\Omega_1$ for the weather observed on **one day**.
-2. Construct the **sample space** $\Omega_2$ for **two consecutive days**.
-3. Define the **sample space** $\Omega_7$ describing the weather observed during **seven consecutive days**.
-4. Determine the **number of elementary outcomes** in each sample space.
-5. Briefly describe what an **elementary outcome** represents in the case of a **weekly observation**.
+---
 
 ## Task 5 — Buffon's Needle Experiment
 
-Consider an experiment in which a needle of length $L$ is thrown randomly onto a floor with equally spaced parallel lines.  
-The distance between neighboring lines is $d$.
+1. **Sample space Omega:** The set of all possible resting positions of the needle on the ruled floor.
+2. **Parameters:** * The perpendicular distance from the center of the needle to the nearest line.
+   * The acute angle formed between the needle and the parallel lines.
+3. **Variables:**
+   * Distance X in [0, d/2]
+   * Angle theta in [0, pi/2]
+4. **Sample space as a set:**
+   Omega = {(X, theta) | 0 <= X <= d/2, 0 <= theta <= pi/2}
+5. **Why it is continuous:**
+   Unlike dice or coins which have discrete, countable outcomes, the needle's position and angle can take any real number value within their respective intervals. 
 
-1. Describe the **sample space** $\Omega$ of this experiment.
-
-2. Identify the **parameters that determine the outcome of a single throw**.
-
-3. Represent an elementary outcome using appropriate variables describing:
-
-   - the **position** of the needle relative to the nearest line,
-   - the **orientation angle** of the needle.
-
-4. Express the sample space $\Omega$ as a **set of possible values of these variables**.
-   (You may restrict to $x \in [0, \tfrac{d}{2}]$ for the distance of the needle's center from the nearest line and $\theta \in [0, \tfrac{\pi}{2}]$ for the angle, using symmetry.)
-
-5. Briefly explain why the sample space in this experiment is **continuous**, unlike the sample spaces in the previous tasks.
-
+---
 
 ## Task 6 — Events and Probabilities in Coin Tossing
 
-Refer to **Task 1**, where the sample spaces for one, two, and three coin tosses were defined.
+(Probabilities assigned to elementary outcomes: Omega_1 = 1/2, Omega_2 = 1/4, Omega_3 = 1/8)
 
-Assume the coin is **fair**, so all elementary outcomes are **equally likely**.
+**One Coin Toss:**
+* P(A_1) = P({H}) = 1/2
+* P(B_1) = P({T}) = 1/2
+* P(C_1) = P({H}) = 1/2
 
-First assign probabilities to all **elementary outcomes** in the sample spaces:
+**Two Coin Tosses:**
+* P(A_2) = P({(H,T), (T,H)}) = 2/4 = 1/2
+* P(B_2) = 1 - P({(T,T)}) = 1 - 1/4 = 3/4
+* P(C_2) = P({(H,H), (T,T)}) = 2/4 = 1/2
 
-- $\Omega_1$ (one toss),
-- $\Omega_2$ (two tosses),
-- $\Omega_3$ (three tosses).
+**Three Coin Tosses:**
+* P(A_3) = P({(H,H,T), (H,T,H), (T,H,H)}) = 3/8
+* P(B_3) = 1 - P({(H,H,H)}) = 1 - 1/8 = 7/8
+* P(C_3) = P({(H,H,H), (T,T,T)}) = 2/8 = 1/4
 
-Then describe the following **events as subsets of the sample space** and compute their probabilities.
-
----
-
-### One Coin Toss
-
-Compute the probability of the following events:
-
-- $A_1$ — the result is **heads**,
-- $B_1$ — the result is **tails**,
-- $C_1$ — the result is **not tails**.
-
----
-
-### Two Coin Tosses
-
-Compute the probability of the following events:
-
-- $A_2$ — **exactly one head** occurs,
-- $B_2$ — **at least one head** occurs,
-- $C_2$ — **both tosses give the same result**.
+**Additional Event on Omega_3:**
+* D_3 — The first toss is tails. 
+* D_3 = {(T,H,H), (T,H,T), (T,T,H), (T,T,T)}
+* P(D_3) = 4/8 = 1/2
 
 ---
-
-### Three Coin Tosses
-
-Compute the probability of the following events:
-
-- $A_3$ — **exactly two heads** occur,
-- $B_3$ — **at least one tail** occurs,
-- $C_3$ — **all three tosses give the same result**.
-
----
-
-Finally, define **one additional event** on $\Omega_3$ and compute its probability.
-
 
 ## Task 7 — Events and Probabilities in Die Rolling
 
-Refer to **Task 2**, where the sample spaces for one, two, and three rolls of a fair six-sided die were defined.
+(Probabilities assigned: Omega_1 = 1/6, Omega_2 = 1/36, Omega_3 = 1/216)
 
-Assume the die is **fair**, so all elementary outcomes are **equally likely**.
+**One Die Roll:**
+* P(A_1) = P({2, 4, 6}) = 3/6 = 1/2
+* P(B_1) = P({5, 6}) = 2/6 = 1/3
+* P(C_1) = P({1, 2, 3}) = 3/6 = 1/2
 
-First assign probabilities to all **elementary outcomes** in the sample spaces:
+**Two Die Rolls:**
+* P(A_2) = P({(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)}) = 6/36 = 1/6
+* P(B_2) = P({(i,i) | i in {1...6}}) = 6/36 = 1/6
+* P(C_2) = P({(4,6), (5,5), (6,4), (5,6), (6,5), (6,6)}) = 6/36 = 1/6
 
-- $\Omega_1$ (one roll),
-- $\Omega_2$ (two rolls),
-- $\Omega_3$ (three rolls).
+**Three Die Rolls:**
+* A_3 (Sum is 10): 27 combinations sum to 10. P(A_3) = 27/216 = 1/8
+* B_3 (Exactly two same): Choose duplicated number (6), single number (5), and arrangement (3). 6 * 5 * 3 = 90. P(B_3) = 90/216 = 5/12
+* C_3 (Two 2s and one 3): Permutations are (2,2,3), (2,3,2), (3,2,2). P(C_3) = 3/216 = 1/72
 
-Then describe the following **events as subsets of the sample space** and compute their probabilities.
-
----
-
-### One Die Roll
-
-Compute the probability of the following events:
-
-- $A_1$ — the result is **even**,
-- $B_1$ — the result is **greater than 4**,
-- $C_1$ — the result is **at most 3**.
-
----
-
-### Two Die Rolls
-
-Compute the probability of the following events:
-
-- $A_2$ — the **sum of the results equals 7**,
-- $B_2$ — **both results are the same**,
-- $C_2$ — the **sum of the results is at least 10**.
+**Additional Event on Omega_3:**
+* D_3 — All three rolls are odd.
+* P(D_3) = (3 * 3 * 3) / 216 = 27/216 = 1/8
 
 ---
-
-### Three Die Rolls
-
-Compute the probability of the following events:
-
-- $A_3$ — **the sum of the results equals 10**,
-- $B_3$ — **exactly two rolls give the same number**,
-- $C_3$ — the outcomes contain **two twos and one three** (in any order).
-
----
-
-Finally, define **one additional event** on $\Omega_3$ and compute its probability.
-
 
 ## Task 8 — Events and Probabilities in Card Drawing
 
-Refer to **Task 3**, where the sample spaces for drawing cards from a standard 52-card deck were defined.
+**One Card Drawn:**
+* P(A_1) = 13/52 = 1/4
+* P(B_1) = 4/52 = 1/13
+* P(C_1) = 40/52 = 10/13
 
-Assume the deck is **well-shuffled**. In each experiment, every **ordered sequence of draws** is **equally likely** (with or without replacement as specified).
+**Two Cards Drawn (with replacement):**
+* P(A_2) = (13/52) * (13/52) = 1/16
+* P(B_2) = 1 * (3/52) = 1/13
+* P(C_2) = 1 - P(No Ace) = 1 - (48/52)^2 = 1 - 144/169 = 25/169
 
-First assign probabilities to all **elementary outcomes** in the sample spaces:
+**Two Cards Drawn (without replacement):**
+* P(A_3) = (13/52) * (12/51) = 1/17
+* P(B_3) = 1 * (3/51) = 1/17
+* P(C_3) = (King then Queen) OR (Queen then King) = (4/52 * 4/51) + (4/52 * 4/51) = 32/2652 = 8/663
 
-- $\Omega_1$ (one card drawn),
-- $\Omega_2$ (two cards drawn with replacement),
-- $\Omega_2'$ (two cards drawn without replacement).
-
-Then describe the following **events as subsets of the sample space** and compute their probabilities.
-
----
-
-### One Card Drawn
-
-Compute the probability of the following events:
-
-- $A_1$ — the card is a **heart**,
-- $B_1$ — the card is a **king**,
-- $C_1$ — the card is **not a face card** (not J, Q, or K).
+**Additional Event on Omega_2':**
+* D_2' — Both cards are black. 
+* P(D_2') = (26/52) * (25/51) = 25/102
 
 ---
 
-### Two Cards Drawn (with replacement)
+## Task 9 — Events and Probabilities in Weekly Weather
 
-Compute the probability of the following events:
+(Independent events, P(S) = P(C) = P(R) = 1/3. Total elements: 3^7 = 2187)
 
-- $A_2$ — **both cards are hearts**,
-- $B_2$ — **both cards have the same rank**,
-- $C_2$ — **at least one card is an ace**.
+* P(A) = P(Sat=S) * P(Sun=S) = (1/3) * (1/3) = 1/9
+* P(B) = P(Wed=R) * P(Thu=R) * P(Fri=R) = (1/3)^3 = 1/27
+* P(C) = 1 - P(No sunny days) = 1 - (2/3)^7 = 1 - 128/2187 = 2059/2187
+* P(D) = P(All 7 days are S or C) = (2/3)^7 = 128/2187
+* P(E) = (7 choose 2) * (1/3)^2 * (2/3)^5 = 21 * (1/9) * (32/243) = 224/729
 
----
-
-### Two Cards Drawn (without replacement)
-
-Compute the probability of the following events:
-
-- $A_3$ — **both cards are hearts**,
-- $B_3$ — **both cards have the same rank**,
-- $C_3$ — **one card is a king and the other is a queen** (in any order).
+**Additional Event on Omega_7:**
+* F — All 7 days have the exact same weather. 
+* P(F) = P(All S) + P(All C) + P(All R) = 3 * (1/3)^7 = 1/729
 
 ---
 
-Finally, define **one additional event** on $\Omega_2'$ and compute its probability.
+## Task 10 — Buffon's Needle Experiment Probabilities
 
-## Task 9 — Events and Probabilities in Weekly Weather Observation
+(Area of sample space Omega = d/2 * pi/2 = pi*d/4. Intersects if X <= (L/2)*sin(theta))
 
-Refer to **Task 4**, where the sample space $\Omega_7$ describing the weather during seven consecutive days was defined.
+* P(A): Area = Integral from 0 to pi/2 of (L/2)*sin(theta) d(theta) = L/2. 
+  P(A) = (L/2) / (pi*d/4) = 2L / (pi*d)
+* P(B) = 1 - P(A) = 1 - (2L) / (pi*d)
+* P(C) = (pi/6) / (pi/2) = 1/3
+* P(D) = (d/4) / (d/2) = 1/2
+* P(E): Area = Integral from pi/4 to pi/2 of (L/2)*sin(theta) d(theta) = L*sqrt(2)/4. 
+  P(E) = (L*sqrt(2)/4) / (pi*d/4) = L*sqrt(2) / (pi*d)
 
-Each day can be in exactly one of the following states:
-
-- Sunny ($S$)
-- Cloudy ($C$)
-- Rainy ($R$)
-
-Model the weather as **7 independent days**, where each of the three states occurs with probability $\frac{1}{3}$.
-
-Describe the following events as subsets of $\Omega_7$ and compute their probabilities.
-
----
-
-### Events
-
-Compute the probability of the following events:
-
-- $A$ — **the entire weekend is sunny** (Saturday and Sunday are both $S$),
-
-- $B$ — **Wednesday, Thursday, and Friday are all rainy**,
-
-- $C$ — **at least one day during the week is sunny**,
-
-- $D$ — **no rainy day occurs during the entire week**,
-
-- $E$ — **exactly two days during the week are sunny**.
-
----
-
-Finally, define **one additional event** on $\Omega_7$ and compute its probability.
-
-
-## Task 10 — Events and Probabilities in Buffon's Needle Experiment
-
-Refer to **Task 5**, where the sample space $\Omega$ of Buffon's needle experiment was defined.
-
-A needle of length $L$ is thrown randomly onto a plane with equally spaced parallel lines.  
-The distance between neighboring lines is $d$.
-
-Assume $L \le d$. Let $X \in [0, \tfrac{d}{2}]$ be the distance from the needle's center to the nearest line and $\theta \in [0, \tfrac{\pi}{2}]$ the angle between the needle and the lines. Assume $X$ and $\theta$ are independent and **uniformly distributed** on these intervals.
-
-Describe the following events and compute their probabilities.
-
----
-
-### Events
-
-Compute the probability of the following events:
-
-- $A$ — the needle **intersects one of the lines**,
-
-- $B$ — the needle **does not intersect any line**,
-
-- $C$ — the **angle between the needle and the lines is smaller than $\frac{\pi}{6}$**,
-
-- $D$ — the **center of the needle falls at a distance less than $\frac{d}{4}$ from the nearest line**,
-
-- $E$ — the needle **intersects a line and the angle with the lines is greater than $\frac{\pi}{4}$**.
-
----
-
-Finally, define **one additional event** in this experiment and compute its probability.
+**Additional Event:**
+* F — The needle is perfectly parallel to the lines (theta = 0).
+* P(F) = 0 (Probability of a single specific value in a continuous distribution is zero).
