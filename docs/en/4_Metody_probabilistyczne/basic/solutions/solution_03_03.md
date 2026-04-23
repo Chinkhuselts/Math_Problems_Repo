@@ -14,3 +14,6 @@
 
 **4. Specify what is considered a success.**
 * **Definition:** In the context of this geometric model, a "success" is finding a page with a **printing error**. The experiment immediately terminates as soon as this "success" is achieved.
+
+
+
