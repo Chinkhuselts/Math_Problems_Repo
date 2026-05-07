@@ -1,192 +1,528 @@
 # Solution: List 4 — Problem 4 (Building complex statements)
 
 ## Conceptual Introduction & Set Theory Mapping
-This problem serves as a visual playground for formal logic and Boolean algebra. We are given three foundational sets (events) inside our $6 \times 6$ Cartesian sample space $\Omega$:
-*   **$A$:** Sum is 7 (The Anti-Diagonal)
-*   **$B$:** First die $>$ Second die (The Lower Triangle)
-*   **$C$:** At least one 6 (The Edge Cross)
 
-When we build "compound statements" using natural language words like *AND*, *OR*, *NOT*, and *BUT*, we are performing exact mathematical operations on these sets:
-*   **OR** translates to **Set Union ($\cup$)**: Combine the marks from both grids.
-*   **AND** translates to **Set Intersection ($\cap$)**: Keep only the marks that overlap in both grids.
-*   **NOT** translates to **Set Complement ($^c$)**: Invert the grid (swap `X` with `.`).
-*   **BUT** translates to **Set Difference ($\setminus$)** or **Intersection with Complement ($\cap \dots^c$)**: Start with the first grid and erase anything that overlaps with the second.
+We are given three foundational sets inside a $6 \times 6$ Cartesian sample space $\Omega$ (rows = first die, columns = second die):
 
-By overlaying these shapes visually, abstract logic becomes concrete geometry.
+- **$A$:** Sum is 7 — the anti-diagonal
+- **$B$:** First die $>$ Second die — the strict lower triangle
+- **$C$:** At least one 6 — the 6th row and 6th column
 
----
-
-## Part A — Base statements
-
-### Event A: The sum of the two results is equal to 7
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . X .
-3     . . . X . .
-4     . . X . . .
-5     . X . . . .
-6     X . . . . .
-
-```
-*   **Shape:** The main anti-diagonal.
-
-### Event B: The first die shows a greater number than the second
-```text
-      1 2 3 4 5 6
-1     . . . . . .
-2     X . . . . .
-3     X X . . . .
-4     X X X . . .
-5     X X X X . .
-6     X X X X X .
-
-```
-*   **Shape:** The strict lower triangle (excluding the main diagonal).
-
-### Event C: At least one die shows 6
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . . X
-3     . . . . . X
-4     . . . . . X
-5     . . . . . X
-6     X X X X X X
-
-```
-*   **Shape:** The 6th row and 6th column (a corner cross).
+Operations on sets:
+- **OR** → Union ($\cup$): include cells from *either* grid
+- **AND** → Intersection ($\cap$): keep only cells in *both* grids
+- **NOT** → Complement ($^c$): flip every cell
+- **BUT** → Set Difference ($\setminus$): start with one grid, erase the overlap with the other
 
 ---
 
-## Part B — Compound statements
+## Part A — Base Events
 
-### 1. The sum is 7 OR at least one die shows 6 ($A \cup C$)
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . X X
-3     . . . X . X
-4     . . X . . X
-5     . X . . . X
-6     X X X X X X
+<table>
+<tr>
+<th align="center">Event A &nbsp;—&nbsp; Sum = 7</th>
+<th align="center">Event B &nbsp;—&nbsp; First die &gt; Second die</th>
+<th align="center">Event C &nbsp;—&nbsp; At least one die shows 6</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 X . . . . .
+3 X X . . . .
+4 X X X . . .
+5 X X X X . .
+6 X X X X X .
+</pre></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+</tr>
+</table>
 
-```
-*   **Reasoning:** We take the anti-diagonal ($A$) and merge it with the corner cross ($C$). Every cell belonging to either set is included.
+---
 
-### 2. The sum is 7 AND at least one die shows 6 ($A \cap C$)
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . . .
-3     . . . . . .
-4     . . . . . .
-5     . . . . . .
-6     X . . . . .
+## Part B — Compound Events
 
-```
-*   **Reasoning:** We look strictly for the overlap between the anti-diagonal and the cross. The only points where $i+j=7$ and one of the variables is 6 are the coordinates $(1,6)$ and $(6,1)$. 
+### 1. The sum is 7 OR at least one die shows 6 &nbsp; ($A \cup C$)
 
-### 3. The first die is greater than the second AND at least one die shows 6 ($B \cap C$)
-```text
-      1 2 3 4 5 6
-1     . . . . . .
-2     . . . . . .
-3     . . . . . .
-4     . . . . . .
-5     . . . . . .
-6     X X X X X .
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∪</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $A \cup C$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∪</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X X
+3 . . . X . X
+4 . . X . . X
+5 . X . . . X
+6 X X X X X X
+</pre></td>
+</tr>
+</table>
 
-```
-*   **Reasoning:** We intersect the lower triangle ($B$) with the 6-cross ($C$). The 6th column ($j=6$) has no elements where $i > j$, so it disappears. The 6th row ($i=6$) contains elements where $6 > j$ for $j \in \{1,2,3,4,5\}$. This gives us a horizontal line segment.
+> Merge the anti-diagonal with the 6-cross. Every cell belonging to either set is included.
 
-### 4. The sum is 7, BUT the first die is not greater than the second ($A \setminus B$)
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . X .
-3     . . . X . .
-4     . . . . . .
-5     . . . . . .
-6     . . . . . .
+---
 
-```
-*   **Reasoning:** Formally, this is $A \cap B^c$. We start with the anti-diagonal ($A$) and "erase" the portion that dips into the lower triangle ($B$). This leaves only the upper half of the anti-diagonal: $(1,6), (2,5), (3,4)$. (Note: if the sum is 7, they cannot be equal, so the main diagonal is irrelevant here).
+### 2. The sum is 7 AND at least one die shows 6 &nbsp; ($A \cap C$)
 
-### 5. The sum is 7, AND no die shows 6 ($A \cap C^c$)
-```text
-      1 2 3 4 5 6
-1     . . . . . .
-2     . . . . X .
-3     . . . X . .
-4     . . X . . .
-5     . X . . . .
-6     . . . . . .
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∩</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $A \cap C$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . .
+3 . . . . . .
+4 . . . . . .
+5 . . . . . .
+6 X . . . . .
+</pre></td>
+</tr>
+</table>
 
-```
-*   **Reasoning:** We take the anti-diagonal ($A$) and remove any overlap with $C$. This means we erase the endpoints $(1,6)$ and $(6,1)$, leaving the inner diagonal segment $(2,5), (3,4), (4,3), (5,2)$.
+> Only cells where $i+j=7$ **and** one die is 6: $(1,6)$ and $(6,1)$.
 
-### 6. At least one die shows 6, BUT the sum is not 7 ($C \setminus A$)
-```text
-      1 2 3 4 5 6
-1     . . . . . .
-2     . . . . . X
-3     . . . . . X
-4     . . . . . X
-5     . . . . . X
-6     . X X X X X
+---
 
-```
-*   **Reasoning:** Start with the 6-cross ($C$) and punch holes where it intersects the anti-diagonal ($A$). The cells $(1,6)$ and $(6,1)$ are removed from the cross.
+### 3. The first die is greater than the second AND at least one die shows 6 &nbsp; ($B \cap C$)
 
-### 7. The sum is not 7 AND the first die is greater than the second ($A^c \cap B$)
-```text
-      1 2 3 4 5 6
-1     . . . . . .
-2     X . . . . .
-3     X X . . . .
-4     X X . . . .
-5     X . X X . .
-6     . X X X X .
+<table>
+<tr>
+<th align="center">Event B &nbsp;(First &gt; Second)</th>
+<th align="center">∩</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $B \cap C$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 X . . . . .
+3 X X . . . .
+4 X X X . . .
+5 X X X X . .
+6 X X X X X .
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 . . . . . .
+3 . . . . . .
+4 . . . . . .
+5 . . . . . .
+6 X X X X X .
+</pre></td>
+</tr>
+</table>
 
-```
-*   **Reasoning:** We start with the entire lower triangle ($B$). Then we remove the points that sum to 7. This essentially takes a slice out of the triangle, removing $(4,3), (5,2), (6,1)$.
+> Column 6 ($j=6$) has no cells where $i>j$, so it drops out. Row 6 ($i=6$) gives $6>j$ for $j \in \{1,2,3,4,5\}$ — a horizontal strip.
 
-### 8. The first die is not greater than the second AND at least one die shows 6 ($B^c \cap C$)
-```text
-      1 2 3 4 5 6
-1     . . . . . X
-2     . . . . . X
-3     . . . . . X
-4     . . . . . X
-5     . . . . . X
-6     . . . . . X
+---
 
-```
-*   **Reasoning:** "Not greater than" means $i \leq j$ (the upper triangle plus the main diagonal). We intersect this with the 6-cross. The 6th row only overlaps at $(6,6)$. The 6th column overlaps completely. Therefore, the resulting set is the entire 6th column.
+### 4. The sum is 7, BUT the first die is not greater than the second &nbsp; ($A \setminus B$)
 
-### 9. It is not true that (the sum is 7 OR at least one die shows 6) ($(A \cup C)^c$)
-```text
-      1 2 3 4 5 6
-1     X X X X X .
-2     X X X X . .
-3     X X X . X .
-4     X X . X X .
-5     X . X X X .
-6     . . . . . .
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∖</th>
+<th align="center">Event B &nbsp;(First &gt; Second)</th>
+<th align="center">=</th>
+<th align="center">Result: $A \setminus B$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∖</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 X . . . . .
+3 X X . . . .
+4 X X X . . .
+5 X X X X . .
+6 X X X X X .
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . . . . .
+5 . . . . . .
+6 . . . . . .
+</pre></td>
+</tr>
+</table>
 
-```
-*   **Reasoning:** By De Morgan's Law, $(A \cup C)^c = A^c \cap C^c$. This reads as: "The sum is not 7 AND no die shows 6." We take the full $6 \times 6$ board and wipe out the entire anti-diagonal and the entire 6-cross.
+> Formally $A \cap B^c$. Remove the lower-triangle portion of the anti-diagonal. Leaves the upper half: $(1,6), (2,5), (3,4)$.
 
-### 10. It is not true that (the sum is 7 AND at least one die shows 6) ($(A \cap C)^c$)
-```text
-      1 2 3 4 5 6
-1     X X X X X .
-2     X X X X X X
-3     X X X X X X
-4     X X X X X X
-5     X X X X X X
-6     . X X X X X
+---
 
-```
-*   **Reasoning:** Also by De Morgan's Law, $(A \cap C)^c = A^c \cup C^c$. We are negating only the two overlapping intersection points. Therefore, we mark *every single cell* in the grid except for the two excluded points: $(1,6)$ and $(6,1)$.
+### 5. The sum is 7 AND no die shows 6 &nbsp; ($A \cap C^c$)
+
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∩</th>
+<th align="center">Event C<sup>c</sup> &nbsp;(No 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $A \cap C^c$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 X X X X X .
+2 X X X X X .
+3 X X X X X .
+4 X X X X X .
+5 X X X X X .
+6 . . . . . .
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 . . . . . .
+</pre></td>
+</tr>
+</table>
+
+> Remove the two endpoints of the anti-diagonal that touch the 6-cross: $(1,6)$ and $(6,1)$. Leaves the inner segment $(2,5),(3,4),(4,3),(5,2)$.
+
+---
+
+### 6. At least one die shows 6, BUT the sum is not 7 &nbsp; ($C \setminus A$)
+
+<table>
+<tr>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">∖</th>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">=</th>
+<th align="center">Result: $C \setminus A$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>∖</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 . X X X X X
+</pre></td>
+</tr>
+</table>
+
+> Start with the 6-cross and punch out the two intersection points $(1,6)$ and $(6,1)$.
+
+---
+
+### 7. The sum is not 7 AND the first die is greater than the second &nbsp; ($A^c \cap B$)
+
+<table>
+<tr>
+<th align="center">Event A<sup>c</sup> &nbsp;(Sum ≠ 7)</th>
+<th align="center">∩</th>
+<th align="center">Event B &nbsp;(First &gt; Second)</th>
+<th align="center">=</th>
+<th align="center">Result: $A^c \cap B$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 X X X X X .
+2 X X X X . X
+3 X X X . X X
+4 X X . X X X
+5 X . X X X X
+6 . X X X X X
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 X . . . . .
+3 X X . . . .
+4 X X X . . .
+5 X X X X . .
+6 X X X X X .
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . .
+2 X . . . . .
+3 X X . . . .
+4 X X . . . .
+5 X . X X . .
+6 . X X X X .
+</pre></td>
+</tr>
+</table>
+
+> Take the lower triangle ($B$) and remove the three anti-diagonal cells that fall inside it: $(4,3),(5,2),(6,1)$.
+
+---
+
+### 8. The first die is NOT greater than the second AND at least one die shows 6 &nbsp; ($B^c \cap C$)
+
+<table>
+<tr>
+<th align="center">Event B<sup>c</sup> &nbsp;(First ≤ Second)</th>
+<th align="center">∩</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $B^c \cap C$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 X X X X X X
+2 . X X X X X
+3 . . X X X X
+4 . . . X X X
+5 . . . . X X
+6 . . . . . X
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>=</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 . . . . . X
+</pre></td>
+</tr>
+</table>
+
+> "$i \leq j$" (upper triangle + diagonal) intersected with the 6-cross. Row 6 loses all but $(6,6)$; column 6 survives entirely — the result is the full 6th column.
+
+---
+
+### 9. NOT (sum is 7 OR at least one die shows 6) &nbsp; ($(A \cup C)^c$)
+
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∪</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $(A \cup C)^c$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∪</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>complement →</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 X X X X X .
+2 X X X X . .
+3 X X X . X .
+4 X X . X X .
+5 X . X X X .
+6 . . . . . .
+</pre></td>
+</tr>
+</table>
+
+> By De Morgan: $(A \cup C)^c = A^c \cap C^c$ — "sum ≠ 7 AND no 6." The entire anti-diagonal and 6-cross are wiped from the board.
+
+---
+
+### 10. NOT (sum is 7 AND at least one die shows 6) &nbsp; ($(A \cap C)^c$)
+
+<table>
+<tr>
+<th align="center">Event A &nbsp;(Sum = 7)</th>
+<th align="center">∩</th>
+<th align="center">Event C &nbsp;(At least one 6)</th>
+<th align="center">=</th>
+<th align="center">Result: $(A \cap C)^c$</th>
+</tr>
+<tr>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . X .
+3 . . . X . .
+4 . . X . . .
+5 . X . . . .
+6 X . . . . .
+</pre></td>
+<td align="center"><b>∩</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 . . . . . X
+2 . . . . . X
+3 . . . . . X
+4 . . . . . X
+5 . . . . . X
+6 X X X X X X
+</pre></td>
+<td align="center"><b>complement →</b></td>
+<td><pre>
+  1 2 3 4 5 6
+1 X X X X X .
+2 X X X X X X
+3 X X X X X X
+4 X X X X X X
+5 X X X X X X
+6 . X X X X X
+</pre></td>
+</tr>
+</table>
+
+> By De Morgan: $(A \cap C)^c = A^c \cup C^c$. Since $A \cap C$ contains only $(1,6)$ and $(6,1)$, we negate just those two — marking every other cell in the grid.
